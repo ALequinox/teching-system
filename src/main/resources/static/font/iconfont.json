@@ -1,0 +1,93 @@
+{
+  "id": "2620748",
+  "name": "no 我的教育项目",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "15726939",
+      "name": "文档",
+      "font_class": "wendang",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "20403104",
+      "name": "视频",
+      "font_class": "shipin",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "19504437",
+      "name": "课程",
+      "font_class": "kecheng1",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "1191704",
+      "name": "展开1",
+      "font_class": "zhankai1",
+      "unicode": "e71f",
+      "unicode_decimal": 59167
+    },
+    {
+      "icon_id": "1191705",
+      "name": "展开2",
+      "font_class": "zhankai2",
+      "unicode": "e720",
+      "unicode_decimal": 59168
+    },
+    {
+      "icon_id": "301788",
+      "name": "加入",
+      "font_class": "jiaru",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "5638787",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "6600996",
+      "name": "复制",
+      "font_class": "fuzhi",
+      "unicode": "e6b4",
+      "unicode_decimal": 59060
+    },
+    {
+      "icon_id": "7335534",
+      "name": "查询",
+      "font_class": "chaxun",
+      "unicode": "eb30",
+      "unicode_decimal": 60208
+    },
+    {
+      "icon_id": "7384771",
+      "name": "课程管理",
+      "font_class": "kecheng",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "12598995",
+      "name": "习题",
+      "font_class": "xiti",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "19494236",
+      "name": "删 除",
+      "font_class": "shanchu",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    }
+  ]
+}

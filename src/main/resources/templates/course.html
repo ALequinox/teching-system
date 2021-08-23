@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="/static/font/iconfont.css">
+		<style>
+			*{
+				margin: 0px;
+				padding:0px;
+				
+			}
+			body{
+				font-size: 14px;
+			}
+			.container{
+				width: 100%;
+				height: 600px;
+				display: flex;
+				flex-direction: column;
+			}
+			/*header开始*/
+			.header{
+				background-color: black;
+				height: 55px;
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+			}
+			.header-logo{
+				padding-left: 20px;
+			}
+			.header-right{
+				color: #FFFFFF;
+				padding-right: 50px;
+				line-height: 55px;
+				font-size: 16px;
+			}
+			.header a{
+				text-decoration: none;
+				margin-left: 20px;
+				color: #FFFFFF;
+			}
+			/*header结束*/
+			/*layout开始*/
+			.layout{
+				display: flex;
+				flex-direction: column;
+				background-color: #EEEEEE;
+				flex: 1;
+			}
+
+			.course-menu{
+				padding: 10px 30px;
+				background-color: #FFFFFF;
+			}
+
+			.course-add{
+				margin-top: 10px;
+				margin-left: 25px;
+			}
+			.chapter-list{
+				margin-top: 20px;
+				margin-left: 25px;
+				margin-right: 25px;
+				/* background-color: violet; */
+				min-height: 200px;
+
+			}
+			/* .chapter{
+				margin-top: 30px;
+			} */
+
+			.chapter-title{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				line-height: 40px;
+				height: 40px;
+				background-color: #cfe5fc;
+			}
+			.chapter-name{
+				padding-left: 25px;
+				font-weight: bolder;
+			}
+			.chapter-tools{
+				margin-right: 20px;
+			}
+			.icon-btn{
+				display: inline-block;
+				margin: 0px 5px;
+				
+			}
+			.icon-btn a{
+				color: #409eef;
+				text-decoration: none;
+			}
+
+			.chapter-section{
+				background-color: #f9f9f9;
+			}
+			.section-name{
+				height: 40px;
+				line-height: 40px;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				padding-left: 20px;
+				background-color: #e6e3e3;
+			}
+			.section-dot{
+				display: inline-block;
+				margin: 0px 10px 0px 30px;
+				width: 6px;
+				height: 6px;
+				border-radius: 3px;
+				background-color: #409eef;
+			}
+			.section-tools{
+				margin-right: 20px;
+			}
+			.section-resource{
+				height: 40px;
+				line-height: 40px;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				padding-left: 80px;
+			}
+			.resource-tools{
+				margin-right: 20px;
+			}
+
+			.section-add{
+				height: 40px;
+				line-height: 40px;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				padding-left: 40px;
+				background-color: #e6e3e3;
+			}
+
+			/*layout结束*/
+
+			.button{
+				cursor: pointer;
+				margin: 0px;
+				padding: 7px 12px;
+				border-radius: 5px;
+			}
+			.button-primary{
+				
+				color: white;
+				background-color: #409eef;
+				border-color: #409eef;
+			}
+			.button-primary:hover{
+				color: white;
+				background-color: #66b1ff;
+				border-color: #66b1ff;
+			}
+			.iconmargin{
+				margin-right: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header class="header">
+				<div class="header-logo">
+					<img src="../static/imge/logo.png" >
+				</div>
+				<div class="header-right">
+					欢迎：某某
+					<a href="">修改密码</a>
+					<a href="">退出</a>
+				</div>
+			</header>
+			<section class="layout">
+				<div class="course-menu">
+					我的课程>>理论实践课
+				</div>
+				<div class="course-content">
+					<div class="course-add">
+						<button class="button button-primary"><i class="icon iconfont icon-jiaru iconmargin"></i>添加章节</button>
+					</div>
+					<div class="chapter-list">
+						<div class="chapter">
+							<div class="chapter-title">		
+								<div class="chapter-name">
+									<i class="icon iconfont icon-kecheng1 iconmargin"></i>章节一
+								</div>
+								<div class="chapter-tools">
+									<div class="icon-btn">
+										<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+									</div>
+									<div class="icon-btn">
+										<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+									</div>
+									<div  class="icon-btn">
+										<a href=""><i class="icon iconfont icon-zhankai2 iconmargin"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="chapter-section">
+								<div class="section-name">
+									<div>
+										<span class="section-dot"></span>第一节
+									</div>
+									<div class="section-tools">
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+										</div>
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+										</div>
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-jiaru iconmargin"></i>新增资源</a>
+										</div>
+										<div  class="icon-btn">
+											<a href=""><i class="icon iconfont icon-zhankai2 iconmargin"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="section-resource">
+									<div>
+										<i class="icon iconfont icon-wendang iconmargin"></i>资源一
+									</div>
+									<div class="resource-tools">
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+										</div>
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="section-resource">
+									<div>
+										<i class="icon iconfont icon-shipin iconmargin"></i>资源二
+									</div>
+									<div class="resource-tools">
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+										</div>
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+							<div class="section-add">
+								<div class="icon-btn">
+									<a href=""><i class="icon iconfont icon-jiaru  iconmargin"></i>添加章节</a>
+								</div>
+							</div>
+						</div>
+						<div class="chapter">
+							<div class="chapter-title">		
+								<div class="chapter-name">
+									<i class="icon iconfont icon-kecheng1 iconmargin"></i>章节一
+								</div>
+								<div class="chapter-tools">
+									<div class="icon-btn">
+										<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+									</div>
+									<div class="icon-btn">
+										<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+									</div>
+									<div  class="icon-btn">
+										<a href=""><i class="icon iconfont icon-zhankai2 iconmargin"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="chapter-section">
+								<div class="section-name">
+									<div>
+										<span class="section-dot"></span>第一节
+									</div>
+									<div class="section-tools">
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+										</div>
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+										</div>
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-jiaru iconmargin"></i>新增资源</a>
+										</div>
+										<div  class="icon-btn">
+											<a href=""><i class="icon iconfont icon-zhankai2 iconmargin"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="section-resource">
+									<div>
+										<i class="icon iconfont icon-wendang iconmargin"></i>资源一
+									</div>
+									<div class="resource-tools">
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+										</div>
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="section-resource">
+									<div>
+										<i class="icon iconfont icon-shipin iconmargin"></i>资源二
+									</div>
+									<div class="resource-tools">
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+										</div>
+										<div class="icon-btn">
+											<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+										</div>
+									</div>
+								</div>
+						
+							</div>
+							<div class="section-add">
+								<div class="icon-btn">
+									<a href=""><i class="icon iconfont icon-jiaru  iconmargin"></i>添加章节</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+spring:
+  mvc:
+    # 静态文件访问路径配置，目录使用springMVc默认路径
+    static-path-pattern: /static/**
+
+  #数据源配置
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/teching_system
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      max-active: 10
+      min-idle: 5
+      max-wait: 1000
+      #开启监控和防火墙
+      #filters: 'stat,wall'
+
+      #web监控设置
+      web-stat-filter:
+        enabled: true
+
+      #开启内置监控页面
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+      filter:
+        #sql 监控
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 3000
+          enabled: true
+        #防火墙
+        wall:
+          enabled: true
+      #监控SpringBean
+      aop-patterns: com.alw.*
