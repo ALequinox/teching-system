@@ -11,15 +11,15 @@ import java.util.List;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        //添加登录拦截器，使用cookie和session保证登录
-        List<String> paths = new ArrayList<>();
-        paths.add("/static/**");
-        paths.add("/login*");
-        paths.add("/error");
-        registry.addInterceptor(new LoginInterceptor())
-                .excludePathPatterns(paths)
-                .addPathPatterns("/**");
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        //添加登录拦截器，使用cookie和session保证登录
+//        List<String> paths = new ArrayList<>();
+//        paths.add("/static/**");
+//        paths.add("/login*");
+//        paths.add("/error");
+//        registry.addInterceptor(new LoginInterceptor())
+//                .excludePathPatterns(paths)
+//                .addPathPatterns("/**");
+//    }
 }

@@ -4,25 +4,101 @@
 		<meta charset="utf-8">
 		<title>登录页面</title>
 		<link rel="stylesheet" href="../static/css/login.css">
-		
+		<link rel="stylesheet" href="../static/css/layer.css">
+		<script src="../static/js/jquery-3.4.1.min.js"></script>
+		<script src="../static/js/layer.js"></script>
+		<style>
+			#loginPage{
+				height: 300px;
+				width: 300px;
+				display: flex;
+				flex-direction: column;
+			}
+			#loginPage input{
+				display: block;
+				margin: 30px auto;
+			}
+			#loginPage img{
+				display: block;
+				margin: 10px auto;
+			}
+			.input{
+				border-top: none;
+				border-left: none;
+				border-right: none;
+				border-bottom: 2px solid rgb(199, 196, 196);
+				outline: none;
+				width: 200px;
+			}
+			/* 圆角按钮 */
+			.raduis_button{
+				height: 30px;
+				width: 120px;
+				border-radius: 20px;
+				border: none;
+				color: white;
+				background-color: rgb(56, 155, 236);
+			}
+			.raduis_button:hover{
+				background-color: rgb(53, 134, 201);
+			}
+		</style>
 	</head>
 	<body>
-		<div id="container">
-			<header class="top">
-				<div class="header_logo">
-					<img src="../static/imge/home_logo.png"  alt=""/>
-				</div>
-				<div class="header_btn">
-					<div class="login_btn">登录</div>
-				</div>
-			</header>
-			<section class="middle">
+	<div id="container">
+		<header class="top">
+			<div class="header_logo">
+				<img src="../static/imge/home_logo.png"  alt=""/>
+			</div>
+			<div class="header_btn">
+				<div id="login_btn" class="login_btn">登录</div>
+			</div>
+		</header>
+		<section class="middle">
 
-			</section>
-			<footer class="footer">
-                <div id="text1">数智教学</div>
-                <div id="text2">打造平台+内容+服务的ICT人才培养综合解决方案</div>
-			</footer>
-		</div>
+		</section>
+		<footer class="footer">
+			<div id="text1">数智教学</div>
+			<div id="text2">打造平台+内容+服务的ICT人才培养综合解决方案 </div>
+		</footer>
+	</div>
+	<div id="loginPage" style="display: none;">
+		<form id="login" action="/login" method="post">
+			<img src="../static/imge/login-logo.png" alt="">
+			<input class="input" type="text" name="username" placeholder="请输入用户名" id="">
+			<input class="input" type="password" name="password" placeholder="请输入密码" id="">
+			<input class="raduis_button" type="submit" value="登录">
+		</form>
+	</div>
 	</body>
+	<script>
+		$().ready(function(){
+			$("#login_btn").on("click",function(){
+				layer.open({
+					type: 1,
+					title: '登录',
+					closeBtn: 0,
+					shadeClose: true,
+					//skin: 'yourclass',
+					content: $("#loginPage")
+				})
+			});
+			$("#login").on("submit",function(){
+				const username = $("input[type='text']").val();
+				const password = $("input[type='password']").val();
+				if("" == username || "" == password){
+					layer.msg("用户名密码不能为空");
+					return false;
+				}
+				return true;
+			});
+			/*
+			通过thymeleaf的行内表达式获取message信息，如果有就弹出弹窗
+			 */
+			const msg = '[[${message.message}]]';
+			if (msg !== ""){
+				layer.msg(msg,{offset: 't',anim: 6});
+			}
+		})
+	</script>
 </html>
