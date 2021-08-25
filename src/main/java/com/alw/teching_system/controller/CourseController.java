@@ -51,7 +51,7 @@ public class CourseController {
         course.setCName(courseName);
         course.setCDesc(courseDesc);
         course.setCLevel(Integer.parseInt(courseLevel));
-        course.setIsDelete(true);
+        course.setIsDelete(false);
         course.setLastTime(new Date());
         course.setUser(null);
         //添加课程
@@ -71,8 +71,8 @@ public class CourseController {
 
     @GetMapping("/course")
     @ResponseBody
-    public List<Course> getAllCourse(){
-
-        return null;
+    public List<Course> getAllCourse(Authentication authentication){
+        User user = (User) authentication.getPrincipal();
+        return courseService.selectAllCourse(user.getUsername());
     }
 }

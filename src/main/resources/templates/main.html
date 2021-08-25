@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../static/css/main.css">
     <script src="../static/js/jquery-3.4.1.min.js"></script>
     <script src="../static/js/layer.js"></script>
+    <script src="../static/js/vue.js"></script>
     <style>
         #addCoursePage{
             height: 280px;
@@ -97,20 +98,20 @@
                         <button class="button button-primary" id="addCourse"><i class="icon iconfont icon-jiaru iconmargin"></i>建新课程</button>
                     </div>
                 </div>
-                <div class="card-container">
-                    <div class="card">
+                <div class="card-container" id="course-list">
+                    <div class="card" v-for="course in list">
                         <div class="card-top">
-                            JAVA语法入门
+                            {{ course.cname }}
                         </div>
                         <div class="card-desc">
-                            java语法入门升级版
+                            {{ course.cdesc }}
                         </div>
                         <div class="card-tools">
                             <a href=""><i class="icon iconfont icon-bianji iconmargin"></i>编辑</a>
                             <a href=""><i class="icon iconfont icon-shanchu iconmargin"></i>删除</a>
                         </div>
                         <div class="card-bottom">
-                            零基础
+                            {{ course.clevelName }}
                         </div>
                     </div>
                 </div>
@@ -170,7 +171,19 @@
         if(msg !== ""){
             layer.msg(msg)
         }
-
+        $.ajax({
+            url: "/course",
+            method:'GET',
+            success: function (data) {
+                console.log(data);
+                const list = new Vue({
+                    el: '#course-list',
+                    data:{
+                        list: data
+                    }
+                });
+            }
+        });
     })
 </script>
 </html>

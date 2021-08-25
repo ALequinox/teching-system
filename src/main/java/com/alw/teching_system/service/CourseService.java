@@ -15,10 +15,10 @@ public interface CourseService {
     public int deleteCourse(int id);
 
     /**
-     * 查询所有课程
+     * 查询当前用户的所有课程
      * @return
      */
-    public List<Course> selectAllCourse();
+    public List<Course> selectAllCourse(String username);
 
     /**
      * 添加课程

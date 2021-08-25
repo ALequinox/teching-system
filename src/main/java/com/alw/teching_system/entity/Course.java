@@ -14,6 +14,7 @@ public class Course {
     private String cName;
     private String cDesc;
     private Integer cLevel;
+    private String cLevelName;
     private Date lastTime;
     private Boolean isDelete;
     private Users user;

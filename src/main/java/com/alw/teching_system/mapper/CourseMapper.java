@@ -4,6 +4,8 @@ import com.alw.teching_system.entity.Course;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CourseMapper extends BaseMapper<Course> {
 
@@ -15,4 +17,6 @@ public interface CourseMapper extends BaseMapper<Course> {
     public int insertSelective(Course course);
 
     public int insertUserAndCourse(Course course);
+
+    List<Course> selectByUid(Integer uid);
 }

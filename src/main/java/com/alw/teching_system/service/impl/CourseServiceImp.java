@@ -8,12 +8,14 @@ import com.alw.teching_system.service.CourseService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional
 public class CourseServiceImp implements CourseService {
     @Autowired
     CourseMapper mapper;
@@ -29,10 +31,11 @@ public class CourseServiceImp implements CourseService {
     }
 
     @Override
-    public List<Course> selectAllCourse() {
-        Map<String,Object> columnMap = new HashMap<>();
-        columnMap.put("is_delete",1);
-        return mapper.selectByMap(columnMap);
+    public List<Course> selectAllCourse(String username) {
+        QueryWrapper<Users> wrapper = new QueryWrapper<>();
+        wrapper.eq("username",username);
+        Users users = userMapper.selectOne(wrapper);
+        return mapper.selectByUid(users.getUid());
     }
 
     @Override

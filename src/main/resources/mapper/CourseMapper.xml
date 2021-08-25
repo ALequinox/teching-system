@@ -12,4 +12,15 @@
        INSERT INTO user_course_relation(uid,cid,is_creator,last_time)
                 VALUE(#{user.uid},#{cid},1,#{lastTime});
     </insert>
+
+
+
+    <select id="selectByUid" resultType="com.alw.teching_system.entity.Course">
+        SELECT course.cid,c_name,c_desc,c_level,level_name AS c_level_name
+        FROM course,user_course_relation,course_level
+        WHERE user_course_relation.uid = #{uid}
+            AND course.cid = user_course_relation.cid
+            AND course.c_level = course_level.level_id
+            AND course.is_delete = 0;
+    </select>
 </mapper>

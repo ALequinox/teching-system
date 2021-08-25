@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 class TechingSystemApplicationTests {
@@ -48,6 +49,12 @@ class TechingSystemApplicationTests {
         int i = courseService.addCourse(course, "zhangsan");
         System.out.println(i);
         System.out.println(course);
+    }
+
+    @Test
+    void testSelectAllCourse(){
+        List<Course> zhangsan = courseService.selectAllCourse("zhangsan");
+        System.out.println(zhangsan);
     }
 
 }
