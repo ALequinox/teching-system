@@ -1,6 +1,9 @@
 package com.alw.teching_system.controller;
 
 import com.alw.teching_system.entity.Message;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -14,6 +17,8 @@ public class PageController {
 
     @GetMapping({"/main.html","/","/index"})
     public String mainPage(){
+        Authentication authentication = SecurityContextHolder.getContextHolderStrategy().getContext().getAuthentication();
+        System.out.println(authentication);
         return "main";
     }
 

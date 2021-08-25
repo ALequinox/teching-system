@@ -7,12 +7,64 @@
     <title>主页面</title>
     <link rel="stylesheet" href="../static/font/iconfont.css">
     <link rel="stylesheet" href="../static/css/main.css">
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/js/layer.js"></script>
+    <style>
+        #addCoursePage{
+            height: 280px;
+            width: 300px;
+            text-align: left;
+            padding-left: 40px;
+        }
+        .input-text{
+            margin-top: 25px;
+        }
+        .input-text label{
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .input-text input{
+            border: 1px solid #409EFF;
+            height: 30px;
+            line-height: 30px;
+            width: 270px;
+            outline: none;
+            margin-right: 20px;
+        }
+        .input-text label::before{
+            content: "*";
+            color: #f56c6c;
+            margin-right: 5px;
+        }
+        .input-text select{
+            width: 100px;
+        }
+        .input-button{
+            margin-top: 20px;
+        }
+        .input-button input{
+            width: 270px;
+            cursor: pointer;
+            margin: 0px;
+            padding: 7px 12px;
+            border-radius: 5px;
+            color: white;
+            background-color: #409eef;
+            border-color: #409eef;
+        }
+        .input-button input:hover{
+            color: white;
+            background-color: #66b1ff;
+            border-color: #66b1ff;
+        }
+
+    </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="header-left">
-                <img src="../static/imge/logo.png"/>
+                <img src="../static/imge/logo.png" alt=""/>
             </div>
             <div class="header-right">
                 欢迎:XXX
@@ -42,130 +94,10 @@
                         <img src="../static/imge/query.png" alt="">
                     </div>
                     <div class="add-btn">
-                        <button class="button button-primary"><i class="icon iconfont icon-jiaru iconmargin"></i>建新课程</button>
+                        <button class="button button-primary" id="addCourse"><i class="icon iconfont icon-jiaru iconmargin"></i>建新课程</button>
                     </div>
                 </div>
                 <div class="card-container">
-                    <div class="card">
-                        <div class="card-top">
-                            JAVA语法入门
-                        </div>
-                        <div class="card-desc">
-                            java语法入门升级版
-                        </div>
-                        <div class="card-tools">
-                            <a href=""><i class="icon iconfont icon-bianji iconmargin"></i>编辑</a>
-                            <a href=""><i class="icon iconfont icon-shanchu iconmargin"></i>删除</a>
-                        </div>
-                        <div class="card-bottom">
-                            零基础
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            JAVA语法入门
-                        </div>
-                        <div class="card-desc">
-                            java语法入门升级版
-                        </div>
-                        <div class="card-tools">
-                            <a href=""><i class="icon iconfont icon-bianji iconmargin"></i>编辑</a>
-                            <a href=""><i class="icon iconfont icon-shanchu iconmargin"></i>删除</a>
-                        </div>
-                        <div class="card-bottom">
-                            零基础
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            JAVA语法入门
-                        </div>
-                        <div class="card-desc">
-                            java语法入门升级版
-                        </div>
-                        <div class="card-tools">
-                            <a href=""><i class="icon iconfont icon-bianji iconmargin"></i>编辑</a>
-                            <a href=""><i class="icon iconfont icon-shanchu iconmargin"></i>删除</a>
-                        </div>
-                        <div class="card-bottom">
-                            零基础
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            JAVA语法入门
-                        </div>
-                        <div class="card-desc">
-                            java语法入门升级版
-                        </div>
-                        <div class="card-tools">
-                            <a href=""><i class="icon iconfont icon-bianji iconmargin"></i>编辑</a>
-                            <a href=""><i class="icon iconfont icon-shanchu iconmargin"></i>删除</a>
-                        </div>
-                        <div class="card-bottom">
-                            零基础
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            JAVA语法入门
-                        </div>
-                        <div class="card-desc">
-                            java语法入门升级版
-                        </div>
-                        <div class="card-tools">
-                            <a href=""><i class="icon iconfont icon-bianji iconmargin"></i>编辑</a>
-                            <a href=""><i class="icon iconfont icon-shanchu iconmargin"></i>删除</a>
-                        </div>
-                        <div class="card-bottom">
-                            零基础
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            JAVA语法入门
-                        </div>
-                        <div class="card-desc">
-                            java语法入门升级版
-                        </div>
-                        <div class="card-tools">
-                            <a href=""><i class="icon iconfont icon-bianji iconmargin"></i>编辑</a>
-                            <a href=""><i class="icon iconfont icon-shanchu iconmargin"></i>删除</a>
-                        </div>
-                        <div class="card-bottom">
-                            零基础
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            JAVA语法入门
-                        </div>
-                        <div class="card-desc">
-                            java语法入门升级版
-                        </div>
-                        <div class="card-tools">
-                            <a href=""><i class="icon iconfont icon-bianji iconmargin"></i>编辑</a>
-                            <a href=""><i class="icon iconfont icon-shanchu iconmargin"></i>删除</a>
-                        </div>
-                        <div class="card-bottom">
-                            零基础
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-top">
-                            JAVA语法入门
-                        </div>
-                        <div class="card-desc">
-                            java语法入门升级版
-                        </div>
-                        <div class="card-tools">
-                            <a href=""><i class="icon iconfont icon-bianji iconmargin"></i>编辑</a>
-                            <a href=""><i class="icon iconfont icon-shanchu iconmargin"></i>删除</a>
-                        </div>
-                        <div class="card-bottom">
-                            零基础
-                        </div>
-                    </div>
                     <div class="card">
                         <div class="card-top">
                             JAVA语法入门
@@ -186,4 +118,41 @@
         </section>
     </div>
 </body>
+<div id="addCoursePage" style="display: none;">
+    <form action="" method="POST">
+        <div class="input-text">
+            <label for="course_name">课程名称:</label>
+            <input type="text" name="course_name" id="course_name">
+        </div>
+        <div class="input-text">
+            <label for="course_name">课程描述:</label>
+            <input type="text" name="course_desc" id="course_desc">
+        </div>
+        <div class="input-text">
+            <label for="course_level">课程等级:</label>
+            <select name="course_level" id="course_level">
+                <option value="1">高级</option>
+                <option value="1">中级</option>
+                <option value="1">初级</option>
+            </select>
+        </div>
+        <div class="input-button" >
+            <input type="submit" value="添加">
+        </div>
+    </form>
+</div>
+<script>
+    $().ready(function () {
+        $("#addCourse").on("click",function(){
+            layer.open({
+                type: 1,
+                title: '添加课程',
+                closeBtn: 1,
+                shadeClose: true,
+                //skin: 'yourclass',
+                content: $("#addCoursePage")
+            })
+        })
+    })
+</script>
 </html>

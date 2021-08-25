@@ -2,6 +2,7 @@ package com.alw.teching_system.service.impl;
 
 import com.alw.teching_system.entity.Users;
 import com.alw.teching_system.mapper.UserMapper;
+import com.alw.teching_system.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,7 +20,7 @@ import java.util.List;
  * 自定义处理用户登录的Service，自定义用户判断逻辑
  */
 @Service("userDetailsService")
-public class UserDetailServiceImpl implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     UserMapper userMapper;
@@ -35,5 +36,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
         System.out.println(user);
         List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("role");
         return new User(user.getUsername(),user.getPassword(),auths);
+    }
+
+
+    @Override
+    public Users changePassword(Users users) {
+        return null;
     }
 }
