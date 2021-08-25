@@ -152,6 +152,13 @@
                 //skin: 'yourclass',
                 content: $("#addCoursePage")
             })
+        });
+        $.ajax({
+            url:"/getCourseLevel",
+            method:'GET',
+            success: function (data) {
+                console.log(data);
+            }
         })
     })
 </script>
