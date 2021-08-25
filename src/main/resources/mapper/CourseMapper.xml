@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alw.teching_system.mapper.CourseMapper" >
+    <insert id="insertSelective" parameterType="com.alw.teching_system.entity.Course" useGeneratedKeys="true" keyProperty="cid">
+        INSERT INTO course(c_name,c_desc,c_level,last_time,is_delete)
+                VALUE(#{cName},#{cDesc},#{cLevel},#{lastTime},#{isDelete});
+    </insert>
+
+    <insert id="insertUserAndCourse" parameterType="com.alw.teching_system.entity.Course" >
+       INSERT INTO user_course_relation(uid,cid,is_creator,last_time)
+                VALUE(#{user.uid},#{cid},1,#{lastTime});
+    </insert>
+</mapper>

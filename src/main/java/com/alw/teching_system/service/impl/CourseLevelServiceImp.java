@@ -1,4 +1,4 @@
-package com.alw.teching_system.service.imp;
+package com.alw.teching_system.service.impl;
 
 import com.alw.teching_system.entity.CourseLevel;
 import com.alw.teching_system.mapper.CourseLevelMapper;

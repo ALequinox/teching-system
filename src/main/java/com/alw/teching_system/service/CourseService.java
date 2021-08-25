@@ -28,6 +28,14 @@ public interface CourseService {
     public int addCourse(Course course);
 
     /**
+     * 用户添加课程
+     * @param course
+     * @param username
+     * @return
+     */
+    public int addCourse(Course course,String username);
+
+    /**
      * 根据id查询课程信息
      * @param id
      * @return
