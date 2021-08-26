@@ -13,5 +13,6 @@ public class Resource {
     private String rPath;
     private Integer ssid;
     private Integer rType;
+    private String rtName;
     private Date lastTime;
 }

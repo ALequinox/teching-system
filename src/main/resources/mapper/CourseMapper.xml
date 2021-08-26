@@ -14,7 +14,6 @@
     </insert>
 
 
-
     <select id="selectByUid" resultType="com.alw.teching_system.entity.Course">
         SELECT course.cid,c_name,c_desc,c_level,level_name AS c_level_name
         FROM course,user_course_relation,course_level

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alw.teching_system.mapper.SubsectionMapper">
+
+    <insert id="insertSubsection" >
+        insert into subsection (ss_name,chid,last_time,is_delete) values
+            (#{ssName},#{chid},#{lastTime},#{isDelete})
+    </insert>
+</mapper>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -100,7 +101,7 @@
                 </div>
                 <div class="card-container" id="course-list">
                     <div class="card" v-for="course in list">
-                        <div class="card-top">
+                        <div class="card-top" v-bind:id="course.cid" v-on:click="enterCourseDetail">
                             {{ course.cname }}
                         </div>
                         <div class="card-desc">
@@ -154,6 +155,7 @@
                 content: $("#addCoursePage")
             })
         });
+
         //初始化下拉框
         $.ajax({
             url:"/getCourseLevel",
@@ -171,6 +173,7 @@
         if(msg !== ""){
             layer.msg(msg)
         }
+        //初始化课程列表
         $.ajax({
             url: "/course",
             method:'GET',
@@ -180,10 +183,19 @@
                     el: '#course-list',
                     data:{
                         list: data
+                    },
+                    methods:{
+                        enterCourseDetail:function (event){
+                           // console.log(event.target);
+                            const id = event.target.id;
+                            location.assign("/chapter/"+id);
+                        }
                     }
                 });
             }
         });
+
+
     })
 </script>
 </html>

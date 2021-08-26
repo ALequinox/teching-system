@@ -1,7 +1,9 @@
 package com.alw.teching_system;
 
+import com.alw.teching_system.entity.Chapter;
 import com.alw.teching_system.entity.Course;
 import com.alw.teching_system.mapper.CourseMapper;
+import com.alw.teching_system.service.ChapterService;
 import com.alw.teching_system.service.CourseService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ class TechingSystemApplicationTests {
 
     @Autowired
     CourseService courseService;
+
+    @Autowired
+    ChapterService chapterService;
 
     @Test
     void contextLoads() {
@@ -55,6 +60,12 @@ class TechingSystemApplicationTests {
     void testSelectAllCourse(){
         List<Course> zhangsan = courseService.selectAllCourse("zhangsan");
         System.out.println(zhangsan);
+    }
+
+    @Test
+    void testSelectAllChapterByCid(){
+        List<Chapter> chapters = chapterService.selectAllChapterByCid(1);
+        chapters.forEach(System.out::println);
     }
 
 }

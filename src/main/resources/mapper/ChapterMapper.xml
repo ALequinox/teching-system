@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alw.teching_system.mapper.ChapterMapper">
+
+
+    <insert id="insertChapter" >
+        INSERT INTO chapter (ch_name,cid,last_time,is_delete) VALUES
+        (#{chName},#{chid},#{lastTime},#{isDelete})
+    </insert>
+
+
+    <resultMap id="ChapterMapper" type="com.alw.teching_system.entity.Chapter">
+        <id property="chid" column="chid" />
+        <result property="chName" column="ch_name"/>
+        <result property="cid" column="cid"/>
+        <result property="lastTime" column="last_time"/>
+        <result property="isDelete" column="is_delete"/>
+        <collection property="subsections" ofType="com.alw.teching_system.entity.Subsection">
+            <id property="ssid" column="ssid"/>
+            <result property="ssName" column="ss_name"/>
+            <collection property="resources" ofType="com.alw.teching_system.entity.Resource">
+                <id property="rid" column="rid"/>
+                <result property="rtName" column="rt_name"/>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="selectAllByCidChapterList" resultMap="ChapterMapper">
+        SELECT chapter.chid,ch_name,cid,subsection.ssid,ss_name,rid,r_name,r_path,r_type,rt_name
+        FROM chapter LEFT JOIN subsection
+        ON chapter.chid = subsection.chid
+        LEFT JOIN resource
+        ON subsection.ssid = resource.ssid
+        LEFT JOIN resource_type
+        ON resource.r_type = resource_type.rt_id
+    </select>
+</mapper>
