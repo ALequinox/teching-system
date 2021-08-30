@@ -22,6 +22,9 @@
             <result property="ssName" column="ss_name"/>
             <collection property="resources" ofType="com.alw.teching_system.entity.Resource">
                 <id property="rid" column="rid"/>
+                <result property="rName" column="r_name"/>
+                <result property="rPath" column="r_path"/>
+                <result property="rType" column="r_type"/>
                 <result property="rtName" column="rt_name"/>
             </collection>
         </collection>

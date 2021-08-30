@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ResourceMapper extends BaseMapper<Resource> {
 
-    public int insertResource(Resource resource);
+     int insertResource(Resource resource);
 }

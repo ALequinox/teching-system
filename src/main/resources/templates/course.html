@@ -70,8 +70,8 @@
 							</div>
 						</div>
 						<div class="section-resource" v-if="subsection.resources.length !== 0" v-for=" resource in subsection.resources ">
-							<div>
-								<i class="icon iconfont icon-wendang iconmargin"></i>{{ resource.rname }}
+							<div v-bind:id="resource.rpath" v-on:click="viewPdf" class="resource-name">
+								 <i class="icon iconfont icon-wendang iconmargin"></i>{{ resource.rname }}
 							</div>
 							<div class="resource-tools">
 								<div class="icon-btn">
@@ -106,7 +106,6 @@
 		<button id="add-chapter" class="button button-primary">确定</button>
 	</div>
 </div>
-
 <div class="pop-modal" id="pop-section" style="display: none;">
 	<input type="hidden" name="chid" id="chid"/>
 	<div class="pop-title">
@@ -235,6 +234,15 @@
 						$("#ssid").val(ssid);
 					}
 				})
+			},
+			//展示pdf
+			viewPdf: function (event){
+				let path = event.target.id;
+
+				console.log(path);
+				path = path.replaceAll("/","*");
+				console.log(path);
+				window.open("../static/pdfjs/web/viewer.html?file=/view-pdf/"+path)
 			}
 		}
 	});
@@ -327,10 +335,12 @@
 			const file = $("#resource-content").prop("files");
 			const filename = $("#resource-name").val();
 			const resourceType = $("#resource-type").val();
+			const ssid = $("#ssid").val();
 			let data = new FormData();
 			data.append("resourceFile",file[0]);
 			data.append("resourceName",filename);
 			data.append("resourceType",resourceType);
+			data.append("ssid",ssid);
 			console.log(data);
 			$.ajax({
 				url: "/resources",
@@ -339,10 +349,16 @@
 				contentType: false,
 				processData: false,
 				success: function (data) {
-
+					if(data.code === 0){
+						layer.alert(data.message,function (){
+							layer.closeAll();
+							loadData();
+						});
+					}else{
+						layer.msg(data.message);
+					}
 				}
 			})
-
 		})
 	});
 </script>

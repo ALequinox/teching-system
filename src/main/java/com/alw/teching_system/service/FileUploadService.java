@@ -6,8 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
+import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class FileUploadService {
@@ -17,6 +20,7 @@ public class FileUploadService {
     @Autowired
     FTPUtils ftpUtils;
 
+
     public String uploadFile(MultipartFile file){
 
         //获取文件后缀名
@@ -25,24 +29,31 @@ public class FileUploadService {
         System.out.println(originalFilename);
         if(StringUtils.hasLength(originalFilename)){
             String[] split = originalFilename.split("\\.");
-            System.out.println(Arrays.toString(split));
-            //suffix = "."+split[split.length-1];
+            //System.out.println(Arrays.toString(split));
+            suffix = "."+split[split.length-1];
+            originalFilename = split[0];
         }
-//
-//        //生成新的文件名
-//        String filename = originalFilename+ UUID.randomUUID().toString()+suffix;
-//
-//        //生成文件路径
-//        String format = this.format.format(new Date());
-//        String filePath = "/"+format.replaceAll("-","/");
-//
-//        try {
-//            ftpUtils.FileUploadToFTP(file.getInputStream(),filePath,filename);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return filePath+filename;
-        return null;
+
+        //生成新的文件名
+        String filename = originalFilename+ UUID.randomUUID().toString()+suffix;
+        filename = filename.replaceAll("\\*","-");
+
+        //生成文件路径 使用当前的日期作为文件路径名
+        String format = this.format.format(new Date());
+        String filePath = "/"+format.replaceAll("-","/");
+        String url = "";
+        try {
+            if (ftpUtils.FileUploadToFTP(file.getInputStream(),filePath,
+                    new String(filename.getBytes(StandardCharsets.UTF_8),StandardCharsets.ISO_8859_1))) {
+                url += ftpUtils.getBasePath()+filePath+"/"+filename;
+                return url;
+            }else{
+                return url;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return url;
+        }
     }
 
 }

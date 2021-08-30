@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alw.teching_system.mapper.ResourceMapper">
+    <insert id="insertResource" parameterType="com.alw.teching_system.entity.Resource">
+        INSERT INTO resource(r_name,r_path,ssid,r_type,last_time)
+        VALUE(#{rName},#{rPath},#{ssid},#{rType},#{lastTime});
+    </insert>
+
+</mapper>
