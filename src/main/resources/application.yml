@@ -37,4 +37,15 @@ spring:
           enabled: true
       #监控SpringBean
       aop-patterns: com.alw.*
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+      enabled: true
 
+
+ftp:
+  hostname: 192.168.85.128
+  username: ftpuser
+  password: 123456
+  base-path: /test

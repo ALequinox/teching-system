@@ -7,7 +7,7 @@
 
     <insert id="insertChapter" >
         INSERT INTO chapter (ch_name,cid,last_time,is_delete) VALUES
-        (#{chName},#{chid},#{lastTime},#{isDelete})
+        (#{chName},#{cid},#{lastTime},#{isDelete})
     </insert>
 
 
@@ -34,5 +34,6 @@
         ON subsection.ssid = resource.ssid
         LEFT JOIN resource_type
         ON resource.r_type = resource_type.rt_id
+        WHERE cid = #{cid}
     </select>
 </mapper>

@@ -25,9 +25,7 @@ public class ChapterServiceImp implements ChapterService {
     @Override
     public List<Chapter> selectAllChapterByCid(int cid) {
 
-        List<Chapter> chapters = chapterMapper.selectAllByCidChapterList(cid);
-
-        return chapters;
+        return chapterMapper.selectAllByCidChapterList(cid);
     }
 
     /**

@@ -191,3 +191,9 @@ body{
 .pop-button{
     margin-top:10px;
 }
+.pop-input select{
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+}
+

@@ -2,9 +2,11 @@ package com.alw.teching_system;
 
 import com.alw.teching_system.entity.Chapter;
 import com.alw.teching_system.entity.Course;
+import com.alw.teching_system.entity.ResourceType;
 import com.alw.teching_system.mapper.CourseMapper;
 import com.alw.teching_system.service.ChapterService;
 import com.alw.teching_system.service.CourseService;
+import com.alw.teching_system.service.ResourceService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -68,4 +70,11 @@ class TechingSystemApplicationTests {
         chapters.forEach(System.out::println);
     }
 
+    @Autowired
+    ResourceService resourceService;
+    @Test
+    void testQueryAllResourceType(){
+        List<ResourceType> resourceTypes = resourceService.queryAllResourceType();
+        resourceTypes.forEach(System.out::println);
+    }
 }

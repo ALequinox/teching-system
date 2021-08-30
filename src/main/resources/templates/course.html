@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml"
+	  xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8">
 	<title></title>
-	<link rel="stylesheet" href="/static/font/iconfont.css">
+	<link rel="stylesheet" href="../static/font/iconfont.css">
 	<link rel="stylesheet" href="../static/css/course.css">
 	<script src="../static/js/jquery-3.4.1.min.js"></script>
 	<script src="../static/js/layer.js"></script>
@@ -31,40 +32,40 @@
 				<button class="button button-primary"><i class="icon iconfont icon-jiaru iconmargin"></i>添加章节</button>
 			</div>
 			<div class="chapter-list" id="chapter-list">
-				<div class="chapter" v-for="chapter in list">
+				<div class="chapter" v-bind:id="'chapter-'+chapter.chid" v-if="list.length !== 0" v-for="chapter in list">
 					<div class="chapter-title">
 						<div class="chapter-name">
-							<i class="icon iconfont icon-kecheng1 iconmargin"></i>{{ chapter.chname }}
+							<i class="icon iconfont icon-kecheng1 iconmargin"></i>{{ chapter.chName }}
 						</div>
 						<div class="chapter-tools">
 							<div class="icon-btn">
-								<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+								<a href="" v-bind:id="'chapter-edit-'+chapter.chid" class="icon iconfont icon-bianji iconmargin"></a>
 							</div>
 							<div class="icon-btn">
-								<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+								<a href="" v-bind:id="'chapter-delete-'+chapter.chid" class="icon iconfont icon-shanchu iconmargin"></a>
 							</div>
 							<div  class="icon-btn">
-								<a href=""><i class="icon iconfont icon-zhankai2 iconmargin"></i></a>
+								<a href="" v-bind:id="'chapter-slide-'+chapter.chid"  v-on:click.prevent="slide" class="icon iconfont icon-zhankai2 iconmargin"></a>
 							</div>
 						</div>
 					</div>
-					<div class="chapter-section" v-if="chapter.subsections.length !== 0" v-for=" subsection in chapter.subsections ">
+					<div class="chapter-section" v-bind:id="'section-'+subsection.ssid"  v-if="chapter.subsections.length !== 0" v-for=" subsection in chapter.subsections ">
 						<div class="section-name">
 							<div>
-								<span class="section-dot"></span>{{ subsection.ssname }}
+								<span class="section-dot"></span>{{ subsection.ssName }}
 							</div>
 							<div class="section-tools">
 								<div class="icon-btn">
-									<a href=""><i class="icon iconfont icon-bianji iconmargin"></i></a>
+									<a href="" v-bind:id="'section-edit-'+subsection.ssid" class="icon iconfont icon-bianji iconmargin"></a>
 								</div>
 								<div class="icon-btn">
-									<a href=""><i class="icon iconfont icon-shanchu iconmargin"></i></a>
+									<a href="" v-bind:id="'section-delete-'+subsection.ssid" class="icon iconfont icon-shanchu iconmargin"></a>
 								</div>
 								<div class="icon-btn">
-									<a href=""><i class="icon iconfont icon-jiaru iconmargin"></i>新增资源</a>
+									<a href="" v-bind:id="'resource-add-'+subsection.ssid" class="icon iconfont icon-jiaru iconmargin" v-on:click.prevent="popResource">新增资源</a>
 								</div>
 								<div  class="icon-btn">
-									<a href=""><i class="icon iconfont icon-zhankai2 iconmargin"></i></a>
+									<a href="" v-bind:id="'section-silde-'+subsection.ssid" v-on:click.prevent="slide1" class="icon iconfont icon-zhankai2 iconmargin"></a>
 								</div>
 							</div>
 						</div>
@@ -84,7 +85,7 @@
 					</div>
 					<div class="section-add">
 						<div class="icon-btn">
-							<a href=""><i class="icon iconfont icon-jiaru  iconmargin"></i>添加章节</a>
+							<a href="" v-bind:id="'section-add-'+chapter.chid" v-on:click.prevent="popSubsection" ><i class="icon iconfont icon-jiaru  iconmargin"></i>添加章节</a>
 						</div>
 					</div>
 				</div>
@@ -99,27 +100,159 @@
 		<span class="input-label">章节的名称:</span>
 	</div>
 	<div class="pop-input">
-		<input type="text" placeholder="" class="line-input"/>
+		<input id="add-chapter-name" type="text" placeholder="请输入章节名" class="line-input"/>
 	</div>
 	<div class="pop-button">
-		<button class="button button-primary">确定</button>
+		<button id="add-chapter" class="button button-primary">确定</button>
+	</div>
+</div>
+
+<div class="pop-modal" id="pop-section" style="display: none;">
+	<input type="hidden" name="chid" id="chid"/>
+	<div class="pop-title">
+		<span class="input-label" >小节的名称:</span>
+	</div>
+	<div class="pop-input">
+		<input type="text" id="subsection-name" placeholder="" class="line-input"/>
+	</div>
+	<div class="pop-button">
+		<button id="add-subsection" class="button button-primary">确定</button>
+	</div>
+</div>
+<div class="pop-modal" id="pop-upload" style="height:300px;display: none;" >
+	<input type="hidden" name="ssid" id="ssid"/>
+	<div class="pop-title" style="height: 90px;">
+		<div class="upload-msg">1. 上传视频要求格式是: .mp4</div>
+		<div class="upload-msg">2. 上传文档要求格式是: .pdf</div>
+		<div class="upload-msg">3. 上传文件最大尺寸:200M</div>
+	</div>
+	<div class="pop-input">
+		<span class="input-label">资源名称:</span>
+		<input id="resource-name" type="text" placeholder="" class="line-input" style="width:160px;"/>
+	</div>
+	<div class="pop-input">
+		<span class="input-label">资源类型:</span>
+		<select id="resource-type">
+			<option value="1">文档</option>
+			<option value="2">视频</option>
+		</select>
+	</div>
+	<div class="pop-button">
+		<input id="resource-content" type="file" accept="application/pdf,.mp4"/>
+		<button id="add-resources" class="button button-primary" style="">确定</button>
 	</div>
 </div>
 <script>
+	const data = [
+		{
+			"chid": "1",
+			"chName": "123",
+			"subsections":[
+				{
+					"ssid": "1",
+					"ssName": "123",
+					"resources":[
+						{
+							"rid":"1",
+							"rname":"123",
+							"rpath":"/123",
+							"rtname":"pdf"
+						}
+					]
+				}
+			]
+		},
+		{
+			"chid": "123",
+			"chName": "123",
+			"subsections":[
+				{
+					"ssid": "1",
+					"ssName": "123",
+					"resources":[]
+				}
+			]
+		},
+		{
+			"chid": "456",
+			"chName": "123",
+			"subsections":[]
+		}
+	];
+	const chapters = new Vue({
+		el: "#chapter-list",
+		data: {
+			list: data
+		},
+		methods:{
+			//弹出弹窗，添加小节
+			popSubsection: function (event) {
+				$("#subsection-name").val("");
+				const splits = event.target.id.split("-");
+				const chid = splits[splits.length-1];
+				layer.open({
+					type:1,
+					title:"添加小节",
+					content: $("#pop-section"),
+					success: function () {
+						$("#chid").val(chid);
+					}
+				})
+			},
+			//章节的展开与收起
+			slide: function (event) {
+				if($(event.target).hasClass("icon-zhankai2")){//进行展开/收起的切换
+					$(event.target).removeClass("icon-zhankai2").addClass("icon-zhankai1")//切换展开
+				}else{
+					$(event.target).removeClass("icon-zhankai1").addClass("icon-zhankai2")//切换收起
+				}
+				let data = event.target.id.split("-");
+				const chapter = $("#chapter-"+data[data.length-1]);
+				$(chapter).children(".chapter-section").slideToggle("slow")
+			},
+			//资源的展开与收起
+			slide1: function (event) {
+				if($(event.target).hasClass("icon-zhankai2")){//进行展开/收起的切换
+					$(event.target).removeClass("icon-zhankai2").addClass("icon-zhankai1")//切换展开
+				}else{
+					$(event.target).removeClass("icon-zhankai1").addClass("icon-zhankai2")//切换收起
+				}
+				let data = event.target.id.split("-");
+				const chapter = $("#section-"+data[data.length-1]);
+				$(chapter).children(".section-resource").slideToggle("slow")
+			},
+			//弹出弹窗，添加资源
+			popResource: function (event) {
+				$("#resource-name").val("");
+				$("#resource-content").val("");
+				const splits = event.target.id.split("-");
+				const ssid = splits[splits.length-1]
+				layer.open({
+					type:1,
+					title:"添加资源",
+					content: $("#pop-upload"),
+					success: function () {
+						$("#ssid").val(ssid);
+					}
+				})
+			}
+		}
+	});
 	function loadData(){
-		const id = $("#cid").val();
+		const cid = $("#cid").val();
 		$.ajax({
-			url:"chapter",
-			data: "id="+id,
+			url:"/chapter",
+			data: "cid="+cid,
+			method: "GET",
 			success: function (data) {
-
+				console.log(data);
+				chapters.list = data;
 			}
 		})
 	}
 	$().ready(function () {
 		//添加章
-		$(".course-add button").on(
-			"click",function(){
+		$(".course-add button").on("click",function(){
 				layer.open({
 					type:1,
 					title:"章节操作",
@@ -127,50 +260,90 @@
 				})
 			}
 		);
-
-		var data = [
-			{
-				"chid": "1",
-				"chname": "123",
-				"subsections":[
-					{
-						"ssid": "1",
-						"ssname": "123",
-						"resources":[
-							{
-								"rid":"1",
-								"rname":"123",
-								"rpath":"/123",
-								"rtname":"pdf"
-							}
-						]
+		$("#add-chapter").on("click",function () {
+			const chapterName = $("#add-chapter-name").val();
+			console.log(chapterName);
+			if(chapterName === ""){
+				layer.msg("章节名不能为空");
+			}else{
+				const cid = $("#cid").val();
+				$.ajax({
+					url:"/chapter",
+					data: "cid="+cid+"&chapterName="+chapterName,
+					method:"POST",
+					success: function (data) {
+						if(data.code === 0) {
+							layer.alert(data.message,function () {
+								layer.closeAll();
+							});
+							loadData();
+						}else{
+							layer.alert(data.message);
+						}
 					}
-				]
-			},
-			{
-				"chid": "1",
-				"chname": "123",
-				"subsections":[
-					{
-						"ssid": "1",
-						"ssname": "123",
-						"resources":[]
-					}
-				]
-			},
-			{
-				"chid": "1",
-				"chname": "123",
-				"subsections":[]
+				});
 			}
-		];
-		const chapters = new Vue({
-			el: "#chapter-list",
-			data: {
-				list: data
+		});
+		loadData();
+		//添加小节
+		$("#add-subsection").on("click",function (){
+			const subsectionName = $("#subsection-name").val();
+			if(subsectionName === ""){
+				layer.msg("小节名不能为空");
+			}else{
+				const chid = $("#chid").val();
+				$.ajax({
+					url:"/subsection",
+					data: "chid="+chid+"&subsectionName="+subsectionName,
+					method:"POST",
+					success: function (data) {
+						if(data.code === 0) {
+							layer.alert(data.message,function () {
+								layer.closeAll();
+							});
+							loadData();
+						}else{
+							layer.alert(data.message);
+						}
+					}
+				});
 			}
 		});
 
-	})
+		//初始化资源类型
+		$.ajax({
+			url:"/resource-type",
+			method:"GET",
+			success:function (data) {
+				$("#resource-type").empty();
+				for (let i=0;i<data.length;i++){
+					$("#resource-type").append(" <option value='"+data[i].rtId+"'>"+data[i].rtName+"</option>")
+				}
+			}
+		});
+
+		//添加资源
+		$("#add-resources").on("click",function () {
+			const file = $("#resource-content").prop("files");
+			const filename = $("#resource-name").val();
+			const resourceType = $("#resource-type").val();
+			let data = new FormData();
+			data.append("resourceFile",file[0]);
+			data.append("resourceName",filename);
+			data.append("resourceType",resourceType);
+			console.log(data);
+			$.ajax({
+				url: "/resources",
+				type: "POST",
+				data: data,
+				contentType: false,
+				processData: false,
+				success: function (data) {
+
+				}
+			})
+
+		})
+	});
 </script>
 </html>
